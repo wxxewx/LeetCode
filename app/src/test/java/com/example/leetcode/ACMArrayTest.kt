@@ -41,4 +41,16 @@ public class ACMArrayTest {
         assert(acmArray.deleteDuplicatesFromSortedArrays(intArrayOf5) == 0)
 
     }
+
+
+    @Test
+    fun  maxProfit_test(){
+        var array1= intArrayOf(7,1,5,3,6,4)
+        var array2= intArrayOf(1,2,3,4,5)
+        var array3= intArrayOf(7,6,4,3,1)
+
+        assert(acmArray.maxProfit(array1)==7)
+        assert(acmArray.maxProfit(array2)==4)
+        assert(acmArray.maxProfit(array3)==0)
+    }
 }
