@@ -1,6 +1,8 @@
 package com.example.leetcode
 
 import java.nio.file.Files.size
+import java.util.HashMap
+import kotlin.collections.HashMap
 
 
 class ACMArray {
@@ -171,5 +173,73 @@ class ACMArray {
             single = single xor nums[i]
         }
         return single
+    }
+
+
+    /**
+     * 给定两个数组，编写一个函数来计算它们的交集。
+
+    示例 1:
+
+    输入: nums1 = [1,2,2,1], nums2 = [2,2]
+    输出: [2,2]
+    示例 2:
+
+    输入: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+    输出: [4,9]
+    说明：
+
+    输出结果中每个元素出现的次数，应与元素在两个数组中出现的次数一致。
+    我们可以不考虑输出结果的顺序。
+    进阶:
+
+    如果给定的数组已经排好序呢？你将如何优化你的算法？
+    如果 nums1 的大小比 nums2 小很多，哪种方法更优？
+    如果 nums2 的元素存储在磁盘上，磁盘内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？
+     */
+    fun intersect(nums1: IntArray, nums2: IntArray): IntArray {
+        var map1 = kotlin.collections.HashMap<Int, Int>()
+        var map2 = kotlin.collections.HashMap<Int, Int>()
+
+        for (i in 0 until nums1.size) {
+            val num = map1[nums1[i]]
+            if (num == null) {
+                map1[nums1[i]] = 1
+            } else {
+                map1[nums1[i]] = num + 1
+            }
+
+        }
+
+        var arraySize = 0
+        for (i in 0 until nums2.size) {
+            val j = map1[nums2[i]]
+            if (j != null) {
+                var k = map2[nums2[i]]
+                if (k == null) {
+                    map2[nums2[i]] = 1
+                    arraySize += 1
+                } else if (k + 1 >j) {
+                    map2[nums2[i]] = j
+                } else {
+                    map2[nums2[i]] = k + 1
+                    arraySize += 1
+                }
+            }
+
+        }
+
+
+        var array = IntArray(arraySize)
+        var size = 0
+        map2.forEach {
+            val value = it.value
+            for (i in 0 until value) {
+                array[size] = it.key
+                size++
+            }
+        }
+
+        return array
     }
 }
