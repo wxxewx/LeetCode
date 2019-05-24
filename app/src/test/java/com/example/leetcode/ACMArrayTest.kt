@@ -54,4 +54,10 @@ public class ACMArrayTest {
         assert(acmArray.maxProfit(array3) == 0)
     }
 
+
+    @Test
+    fun plusOne_test(){
+        var array1 = intArrayOf(9,9,9)
+        assert(acmArray.plusOne(array1) == intArrayOf(1,0,0,0))
+    }
 }

@@ -1,8 +1,7 @@
 package com.example.leetcode
 
 import java.nio.file.Files.size
-import java.util.HashMap
-import kotlin.collections.HashMap
+
 
 
 class ACMArray {
@@ -219,7 +218,7 @@ class ACMArray {
                 if (k == null) {
                     map2[nums2[i]] = 1
                     arraySize += 1
-                } else if (k + 1 >j) {
+                } else if (k + 1 > j) {
                     map2[nums2[i]] = j
                 } else {
                     map2[nums2[i]] = k + 1
@@ -241,5 +240,62 @@ class ACMArray {
         }
 
         return array
+    }
+
+
+    /**
+     * 最高位数字存放在数组的首位， 数组中每个元素只存储一个数字。
+
+    你可以假设除了整数 0 之外，这个整数不会以零开头。
+
+    示例 1:
+
+    输入: [1,2,3]
+    输出: [1,2,4]
+    解释: 输入数组表示数字 123。
+    示例 2:
+
+    输入: [4,3,2,1]
+    输出: [4,3,2,2]
+    解释: 输入数组表示数字 4321。
+     */
+
+    fun plusOne(digits: IntArray): IntArray {
+        val size = digits.size
+        var num = digits[size - 1]
+        if (num == 9) {
+            digits[size - 1] = 0
+            if (size - 2 < 0) {
+                var array = IntArray(size + 1)
+                array[0] = 1
+                array[1] = 0
+                return array
+            } else {
+                for (i in size - 2 downTo 0) {
+                    var num2 = digits[i]
+                    if (num2 == 9) {
+                        if (i == 0) {
+                            digits[i] = 0
+                            var array = IntArray(size + 1)
+                            array[0] = 1
+                            for (k in 0 until size) {
+                                array[k + 1] = digits[k]
+                            }
+                            return array
+
+                        } else {
+                            digits[i] = 0
+                        }
+                    } else {
+                        digits[i] = num2 + 1
+                        break
+                    }
+                }
+            }
+
+        } else {
+            digits[size - 1] = num + 1
+        }
+        return digits
     }
 }
