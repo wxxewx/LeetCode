@@ -58,6 +58,18 @@ public class ACMArrayTest {
     @Test
     fun plusOne_test(){
         var array1 = intArrayOf(9,9,9)
-        assert(acmArray.plusOne(array1) == intArrayOf(1,0,0,0))
+    }
+
+    @Test
+    fun moveZeroes_test(){
+        var array1 = intArrayOf(1,0,2,3,6,0,5)
+        acmArray.moveZeroes(array1)
+    }
+
+
+    @Test
+    fun twoSum_test(){
+        var array1 = intArrayOf(2, 7, 11, 15)
+        acmArray.twoSum(array1,9)
     }
 }
