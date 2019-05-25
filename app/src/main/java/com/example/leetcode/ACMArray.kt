@@ -345,17 +345,30 @@ class ACMArray {
 
     fun twoSum(nums: IntArray, target: Int): IntArray {
 
-        var array = IntArray(2)
+//        var array = IntArray(2)
+//
+//        for (i in 0 until nums.size) {
+//            array[0] = i
+//            for (k in i + 1 until nums.size) {
+//                if (nums[i] + nums[k]==target) {
+//                    array[1]=k
+//                    return array
+//                }
+//            }
+//        }
+//        return array
+
+
+        var map = hashMapOf<Int, Int>()
 
         for (i in 0 until nums.size) {
-            array[0] = i
-            for (k in i + 1 until nums.size) {
-                if (nums[i] + nums[k]==target) {
-                    array[1]=k
-                    return array
-                }
+            if (map.contains(nums[i])) {
+                return intArrayOf(map[target - nums[i]]!!,i)
             }
+            map[target - nums[i]] = i
         }
-        return array
+        return intArrayOf()
     }
+
+
 }
